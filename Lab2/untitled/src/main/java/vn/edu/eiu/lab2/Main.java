@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         // gọi hàm insertStudent
-        //  insertStudent();
+        insertStudent();
         //  getStudentbyId();
         // getAllStudent();
         // updateStudentById("CSE2025003", "Nguyen Tan Nhan456", 8.0, 2005);
