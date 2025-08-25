@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${formMode=='new'?'Add':'Edit'} + ' Equipment'"></title>
+</head>
+<body>
+<h2 th:text="${formMode=='new'?'Add':'Edit'} + ' Equipment'"></h2>
+<form th:action="@{${formMode=='new' ? '/equipment/add' : '/equipment/edit'}}" method="post"
+      th:object="${equipment}">
+    <div>
+        <label>ID:</label>
+        <input type="text" th:field="*{equipmentId}" th:readonly="${formMode=='edit'}"/>
+        <div th:errors="*{equipmentId}"></div>
+    </div>
+    <div>
+        <label>Name:</label>
+        <input type="text" th:field="*{equipmentName}"/>
+        <div th:errors="*{equipmentName}"></div>
+    </div>
+    <div>
+        <label>Price:</label>
+        <input type="number" th:field="*{purchasePrice}"/>
+        <div th:errors="*{purchasePrice}"></div>
+    </div>
+    <div>
+        <label>Quantity:</label>
+        <input type="number" th:field="*{quantityAvailable}"/>
+        <div th:errors="*{quantityAvailable}"></div>
+    </div>
+    <div>
+        <label>Type:</label>
+        <select th:field="*{equipmentType}">
+            <option th:each="t : ${types}" th:value="${t}" th:text="${t.typeName}"></option>
+        </select>
+    </div>
+    <button type="submit" th:text="${formMode=='new'?'Add':'Update'}"></button>
+</form>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- SessionFactory Bean -->
+    <bean id="sessionFactory" class="org.hibernate.SessionFactory">
+        <property name="hibernateConfiguration">
+            <bean class="org.hibernate.cfg.Configuration">
+                <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+                <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver" />
+                <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/your_database" />
+                <property name="hibernate.connection.username" value="your_username" />
+                <property name="hibernate.connection.password" value="your_password" />
+                <property name="hibernate.hbm2ddl.auto" value="update" />
+                <property name="hibernate.show_sql" value="true" />
+            </bean>
+        </property>
+    </bean>
+
+    <!-- CustomerRepository Bean -->
+    <bean id="customerRepo" class="vn.edu.eiu.repo.CustomerRepoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- ProductRepository Bean -->
+    <bean id="productRepo" class="vn.edu.eiu.repo.ProductRepoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- InvoiceRepository Bean -->
+    <bean id="invoiceRepo" class="vn.edu.eiu.repo.InvoiceRepoImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- CustomerService Bean -->
+    <bean id="customerService" class="vn.edu.eiu.service.CustomerService">
+        <property name="customerRepo" ref="customerRepo" />
+    </bean>
+
+    <!-- ProductService Bean -->
+    <bean id="productService" class="vn.edu.eiu.service.ProductService">
+        <property name="productRepo" ref="productRepo" />
+    </bean>
+
+    <!-- InvoiceService Bean -->
+    <bean id="invoiceService" class="vn.edu.eiu.service.InvoiceService">
+        <property name="invoiceRepo" ref="invoiceRepo" />
+        <property name="customerService" ref="customerService" />
+        <property name="productService" ref="productService" />
+    </bean>
+
+</beans>

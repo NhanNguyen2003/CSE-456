@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Top 3 Equipment</title></head>
+<body>
+<h2>Top 3 Equipment (Highest Stock per Type)</h2>
+<table border="1">
+    <tr>
+        <th>Name</th><th>Quantity</th><th>Type</th>
+    </tr>
+    <tr th:each="eq : ${equipments}">
+        <td th:text="${eq.equipmentName}"></td>
+        <td th:text="${eq.quantityAvailable}"></td>
+        <td th:text="${eq.equipmentType.typeName}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>StudentName - Equipment Management Page</title>
+</head>
+<body>
+<h2>Equipment Management</h2>
+<a th:href="@{/equipment/add}">Add New Equipment</a> |
+<a th:href="@{/logout}">Logout</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Name</th><th>Price</th>
+        <th>Quantity</th><th>Date</th><th>Type</th><th>Action</th>
+    </tr>
+    <tr th:each="eq : ${equipments}">
+        <td th:text="${eq.equipmentId}"></td>
+        <td th:text="${eq.equipmentName}"></td>
+        <td th:text="${eq.purchasePrice}"></td>
+        <td th:text="${eq.quantityAvailable}"></td>
+        <td th:text="${eq.purchaseDate}"></td>
+        <td th:text="${eq.equipmentType.typeName}"></td>
+        <td>
+            <a th:href="@{/equipment/edit/{id}(id=${eq.equipmentId})}">Edit</a> |
+            <a th:href="@{/equipment/delete/{id}(id=${eq.equipmentId})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

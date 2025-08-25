@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>StudentName - School Equipment Login</title>
+    <style>
+        body { font-family: Arial; background: #F9F9F9; color: #333; }
+        h2 { font-size: 24px; }
+        label, input { font-size: 18px; margin: 5px; }
+    </style>
+</head>
+<body>
+<h2>School Equipment Login</h2>
+<form th:action="@{/login}" method="post">
+    <label>Username:</label>
+    <input type="text" name="username"/>
+    <label>Password:</label>
+    <input type="password" name="password"/>
+    <button type="submit">Login</button>
+    <div th:if="${error}" th:text="${error}"></div>
+</form>
+</body>
+</html>
